@@ -29,7 +29,7 @@ status: approved
 
 **Tổng cộng:** ~40 giờ build · 1 người · 8 AI agents · TinySDLC methodology
 
-> **v2.2.0 hoàn thành.** Phần bên dưới bao gồm kế hoạch ban đầu (planned vs actual) + roadmap tương lai (v2.3.0 → v3.0.0) cho cộng đồng đóng góp.
+> **v2.5.0 hoàn thành.** Phần bên dưới bao gồm kế hoạch ban đầu (planned vs actual) + roadmap tương lai cho cộng đồng đóng góp.
 
 ---
 
@@ -350,174 +350,33 @@ status: approved
 
 ---
 
-### v2.5.0 - Góc giao lưu (Sprint 13)
+### v2.5.0 - Cộng đồng & Nâng cao (Sprint 13–18) ✅
 
-**Target:** Community contribution / Owner has time
-**Goal:** Không gian chia sẻ cho người trẻ + Việt kiều — gửi ảnh quê, tin nhắn, giao lưu
+**Status:** Done (2026-03-09)
+**Goal:** Góc giao lưu, tìm kiếm & thống kê, GEDCOM 7.0, thông báo, export/import, nhà thờ họ, SEO
 
-> 💡 **Từ phản hồi người dùng:** "Người trẻ cũng nhiều, đi khắp trong nước, có cả nước ngoài.
-> Có box giao lưu thi thoảng gửi cái ảnh ở quê cho người xa nhà."
+| Epic | Tính năng | Sprint |
+|------|-----------|--------|
+| **Góc giao lưu** | Feed bài viết, bình luận, thả tim, upload ảnh, moderation | S15 |
+| **Tìm quan hệ** | BFS pathfinding + Vietnamese relationship labels | S13 |
+| **Thống kê** | Dashboard biểu đồ (Recharts) + PDF export (beta) | S13 |
+| **GEDCOM 7.0** | Export nâng cấp + Vietnamese extensions (Quá Kế) | S14 |
+| **Phát hiện trùng lặp** | Levenshtein + Vietnamese NFD + admin review queue | S14 |
+| **Chế độ người cao tuổi** | Font size toggle + simplified list view | S14 |
+| **Thông báo** | Bell icon + 6 loại + DB triggers (trigger-only insert) | S16 |
+| **GEDCOM Import** | Parse .ged 5.5.1/7.0 → tạo people + families | S17 |
+| **CSV/Markdown Export** | Xuất danh sách thành viên ra CSV/Markdown | S17 |
+| **Hội đồng gia tộc** | `/council` — ban quản trị, lịch sử, sứ mệnh (public) | S18 |
+| **Nhà thờ họ** | `/ancestral-hall` — gallery, lịch tế lễ, OpenStreetMap | S18 |
+| **Đăng ký thành viên** | `/register-member` — form + honeypot + rate limit | S18 |
+| **Fuzzy Search** | Fuse.js diacritics-tolerant search | S18 |
+| **SEO** | sitemap.ts, Open Graph, robots.txt cho 4 trang public | S18 |
 
-| Epic | Stories | Priority |
-|------|---------|----------|
-| **DB Schema** | Bảng `posts` + `post_comments` + `post_likes` | P1 |
-| **Feed Page** | `/feed` — timeline chia sẻ, sorted by newest | P1 |
-| **Post Creation** | Viết bài + đính kèm ảnh (multi-image upload) | P1 |
-| **Comments & Reactions** | Bình luận + thả tim bài viết | P1 |
-| **Admin Moderation** | Ẩn/xóa bài không phù hợp | P1 |
-| **Desktop Support** | SQLite tables + shim cho desktop mode | P1 |
-
-**Exit Criteria:**
-
-- [ ] Thành viên đăng bài + ảnh được
-- [ ] Comment và react hoạt động
-- [ ] Feed timeline hiển thị đúng thứ tự
-- [ ] Admin moderation (ẩn/xóa)
-- [ ] Desktop mode hỗ trợ đầy đủ
-- [ ] `pnpm build` passes
-
-**Ước lượng:** ~6-8 giờ
+**Exit Criteria:** ✅ Tất cả đạt · `pnpm build` passes
 
 ---
 
-### v2.6.0 - GEDCOM Export + Merge Detection + Elderly Mode (Sprint 14)
-
-**Target:** Community contribution / Owner has time
-**Goal:** Nâng cấp GEDCOM, phát hiện trùng lặp, chế độ người cao tuổi
-
-> 💡 **CTO Review (2026-03-09):** GEDCOM chỉ export (import = XL, sprint riêng).
-> Duplicate Detection chỉ detection + review, không auto-merge.
-> Elderly Mode ↑ P1 vì target audience chính.
-
-| Epic | Stories | Priority |
-|------|---------|----------|
-| **GEDCOM 7.0 Export** | Nâng cấp 5.5.1 → 7.0 + Vietnamese extensions (Quá Kế) | P1 |
-| **Duplicate Detection** | Vietnamese name NFD + Levenshtein + blocking (surname + generation ±1) | P1 |
-| **Admin Review Queue** | `/admin/duplicates` — detection kết quả + admin review UI | P1 |
-| **Elderly Mode** | Font lớn toggle, giao diện đơn giản, danh sách thay vì cây | P1 |
-
-**Exit Criteria:**
-
-- [ ] GEDCOM 7.0 export với Vietnamese extensions
-- [ ] Phát hiện trùng lặp + admin review queue
-- [ ] Elderly mode toggle hoạt động
-- [ ] `pnpm build` passes
-
-**Ước lượng:** ~6-8 giờ
-
----
-
-### v2.7.0 - Tìm kiếm & Thống kê (Sprint 15)
-
-**Target:** Community contribution / Owner has time
-**Goal:** Pathfinding giữa 2 thành viên, dashboard thống kê nâng cao, xuất PDF cây gia phả
-
-> 💡 **CTO Review (2026-03-09):** Phê duyệt sau phân tích repo GiaPhaHoLe.
-> Cherry-pick ý tưởng, không copy code. Không thêm D3.js.
-
-| Epic | Stories | Priority |
-|------|---------|----------|
-| **Pathfinding** | BFS + LCA + Vietnamese relationship labels ("Anh em họ bậc 2") | P0 |
-| **Stats Dashboard** | Recharts: generation distribution, gender ratio, living/deceased | P0 |
-| **PDF Export** | html2canvas + jsPDF — prototype/beta, có giới hạn với cây lớn | P1 |
-| **Desktop Support** | Tất cả tính năng hoạt động offline, không external API | P0 |
-
-**Exit Criteria:**
-
-- [ ] Chọn 2 người → hiển đường quan hệ + mô tả tiếng Việt
-- [ ] Dashboard biểu đồ phân bố đời, giới tính, còn sống/đã mất
-- [ ] Xuất PDF cây gia phả (beta — cây ≤50 nodes)
-- [ ] Desktop mode hoạt động
-- [ ] `pnpm build` passes
-
-**Ước lượng:** ~7 giờ
-
----
-
-### v2.8.0 - Thông báo (Sprint 16)
-
-**Target:** Community contribution / Owner has time
-**Goal:** In-app notifications — bell icon, dropdown, DB triggers (email deferred to future sprint)
-
-> 💡 **CTO Review (2026-03-09):** Scope = in-app only (polling 60s).
-> Email notifications deferred — cần Edge Functions + external service.
-
-| Epic | Stories | Priority |
-|------|---------|----------|
-| **DB Schema** | `notifications` table + triggers (post_comment, post_like) | P1 |
-| **Data Layer** | CRUD: getNotifications, markAsRead, markAllAsRead | P1 |
-| **NotificationBell** | Header bell icon + unread badge + dropdown | P1 |
-| **Notifications Page** | `/notifications` — full list, filter by type | P1 |
-| **Preferences** | Cài đặt nhận thông báo (on/off per type) trong profiles | P2 |
-| **Desktop Support** | SQLite table + shim cho desktop mode | P1 |
-
-**Exit Criteria:**
-
-- [ ] Bell icon hiện số thông báo chưa đọc
-- [ ] Click thông báo → navigate + đánh dấu đã đọc
-- [ ] "Tất cả đã đọc" hoạt động
-- [ ] Desktop mode hoạt động
-- [ ] `pnpm build` passes
-
-**Ước lượng:** ~4.5 giờ
-
----
-
-### v2.9.0 - Export/Import nâng cao (Sprint 17)
-
-**Target:** Community contribution / Owner has time
-**Goal:** GEDCOM import, CSV export, Markdown export
-
-> **Note:** GEDCOM export đã hoàn thành (Sprint 14, v2.6.0).
-> Sprint này tập trung vào **import** + CSV + Markdown. Desktop↔Web sync deferred.
-
-| Epic | Stories | Priority |
-|------|---------|----------|
-| **GEDCOM Import** | Nhập gia phả từ file GEDCOM (.ged) — 3-step wizard (XL effort) | P1 |
-| **CSV Export** | Xuất danh sách thành viên → Excel/CSV (UTF-8 BOM) | P1 |
-| **Markdown Export** | Xuất gia phả dạng văn bản, phân nhóm theo đời | P1 |
-
-**Exit Criteria:**
-
-- [ ] GEDCOM import: upload → preview → confirm → data appears
-- [ ] CSV export: download .csv → Vietnamese characters đúng
-- [ ] Markdown export: readable format, grouped by generation
-- [ ] Admin export page shows all formats
-- [ ] `pnpm build` passes
-
-**Ước lượng:** ~6.5 giờ
-
----
-
-### v3.0.0 - Nhà thờ họ (Sprint 18)
-
-**Target:** Community contribution / Owner has time
-**Goal:** Bước đột phá từ "công cụ quản lý" sang "không gian văn hóa dòng họ"
-
-> 💡 **CTO Review (2026-03-09):** Scope = 5 features cụ thể.
-> Đa ngôn ngữ, AI, Radial Tree, cross-clan, multi-tenant, PWA → deferred to v3.1.0+.
-
-| Epic | Stories | Priority |
-|------|---------|----------|
-| **Hội đồng gia tộc** | `/council` — giới thiệu ban quản trị, lịch sử, sứ mệnh (public) | P1 |
-| **Đăng ký thành viên** | `/register-member` — form ghi danh công khai + honeypot anti-spam | P1 |
-| **Nhà thờ họ** | `/ancestral-hall` — gallery, lịch tế lễ, Google Maps | P1 |
-| **Fuzzy Search** | Fuse.js client-side search, diacritics tolerant | P1 |
-| **SEO nâng cao** | sitemap.ts, Open Graph, Twitter Cards | P1 |
-
-**Exit Criteria:**
-
-- [ ] /council, /ancestral-hall, /register-member public pages hoạt động
-- [ ] Admin duyệt đăng ký thành viên
-- [ ] Fuzzy search: "dang" → "Đặng"
-- [ ] /sitemap.xml trả về XML hợp lệ
-- [ ] `pnpm build` passes
-
-**Ước lượng:** ~6.5 giờ
-
----
-
-### v3.1.0+ - Cộng đồng mở rộng (Future)
+### v2.6.0+ - Cộng đồng mở rộng (Future)
 
 **Target:** Q2-Q3 2026
 **Goal:** Mở rộng cho cộng đồng — đa ngôn ngữ, AI, liên kết dòng họ
@@ -721,12 +580,7 @@ status: approved
 | -------- | --------- | --------- | -------- |
 | 11 | v2.2.0 | Kho tài liệu | Upload/download + gallery + admin ✅ |
 | 12 | v2.4.1 | Bảo mật & Xác nhận | Verification + MFA + Backup + Docker + Bulk ✅ |
-| 13 | v2.5.0 | Góc giao lưu | Feed + post + comment + reactions |
-| 14 | v2.6.0 | GEDCOM + Merge + Elderly | GEDCOM 7.0 export + Duplicate Detection + Elderly Mode |
-| 15 | v2.7.0 | Tìm kiếm & Thống kê | Pathfinding + Stats Dashboard + PDF Export |
-| 16 | v2.8.0 | Thông báo | In-app notifications + bell icon + DB triggers |
-| 17 | v2.9.0 | Export/Import nâng cao | GEDCOM import + CSV + Markdown export |
-| 18 | v3.0.0 | Nhà thờ họ | Council + Registration + Ancestral Hall + Fuzzy Search + SEO |
+| 13–18 | v2.5.0 | Cộng đồng & Nâng cao | Feed + Search + GEDCOM 7.0 + Notifications + Nhà thờ họ + SEO ✅ |
 
 ---
 

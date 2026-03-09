@@ -2,7 +2,7 @@
 project: AncestorTree
 path: CLAUDE.md
 type: agent-guidelines
-version: 3.0.0
+version: 2.5.0
 updated: 2026-03-09
 ---
 
@@ -15,7 +15,7 @@ This file provides guidance to AI assistants (Claude, GPT, etc.) when working wi
 **AncestorTree** (Gia Phả Điện Tử) is a digital family tree management system for Chi tộc Đặng Đình, Thạch Lâm, Hà Tĩnh.
 
 - **Repository:** https://github.com/Minh-Tam-Solution/AncestorTree
-- **Current Version:** v3.0.0 (Nhà thờ họ — Council, Registration, Ancestral Hall, Fuzzy Search, SEO)
+- **Current Version:** v2.5.0 (Cộng đồng & Nâng cao — Feed, Search, GEDCOM 7.0, Notifications, Nhà thờ họ, SEO)
 - **SDLC Tier:** LITE (5 stages)
 - **Tech Stack:** Next.js 16, React 19, Tailwind CSS 4, Supabase, Electron 34 (desktop)
 - **Built with:** [TinySDLC](https://github.com/Minh-Tam-Solution/tinysdlc) + [MTS-SDLC-Lite](https://github.com/Minh-Tam-Solution/MTS-SDLC-Lite)
@@ -171,7 +171,7 @@ AncestorTree/
 │   ├── electron-builder.yml        # Cross-platform build config
 │   ├── package.json                # Electron + sql.js deps
 │   └── tsconfig.json
-├── docker-compose.yml              # Docker deployment (v3.0)
+├── docker-compose.yml              # Docker deployment (v2.5)
 ├── .sdlc-config.json               # SDLC configuration
 ├── CLAUDE.md                       # AI assistant guidelines
 └── README.md                       # Project overview
@@ -190,8 +190,8 @@ AncestorTree/
 | **Documents (v2.2)** | `clan_documents` | `sprint11-kho-tai-lieu.sql` |
 | **Settings (v2.3)** | `clan_settings` | `clan-settings.sql` |
 | **Feed (v2.5)** | `posts`, `post_likes`, `post_comments` | `sprint15-feed.sql` |
-| **Notifications (v2.8)** | `notifications` | `sprint16-notifications.sql` |
-| **Registration (v3.0)** | `member_registrations` | `sprint18-registrations.sql` |
+| **Notifications (v2.5)** | `notifications` | `sprint16-notifications.sql` |
+| **Registration (v2.5)** | `member_registrations` | `sprint18-registrations.sql` |
 
 All tables have RLS policies with 4 roles: `admin`, `editor`, `viewer`, `guest`.
 
