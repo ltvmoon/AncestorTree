@@ -330,6 +330,8 @@ export interface CauDuongPool {
   ancestor_id: string;
   min_generation: number;
   max_age_lunar: number;   // Tuổi âm tối đa (mặc định 70)
+  require_married: boolean; // Bắt buộc đã lập gia đình (mặc định true)
+  custom_order?: string[];  // Thứ tự xoay vòng tùy chỉnh (person IDs)
   description?: string;
   is_active: boolean;
   created_at: string;
